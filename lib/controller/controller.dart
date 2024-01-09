@@ -30,8 +30,8 @@ class controller {
 
   Future<void> initNotification() async {
     await noti.requestPermission();
-    var fcm = await noti.getToken();
-    print(fcm);
+    var fcm = noti.getToken();
+    
   }
 
   Future<bool> addLog(

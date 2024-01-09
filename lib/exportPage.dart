@@ -1,9 +1,6 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:dear_diary/EntryCard.dart';
-import 'package:dear_diary/controller/controller.dart';
 import 'package:dear_diary/model.dart/entry.dart';
 import 'package:dear_diary/pdfCard.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
+
 import 'package:screenshot/screenshot.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:pdf/pdf.dart';
