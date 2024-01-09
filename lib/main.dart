@@ -1,25 +1,26 @@
-import 'package:dear_diary/EntryPage.dart';
-import 'package:dear_diary/logpage.dart';
-import 'package:dear_diary/model.dart/entry.dart';
+import 'package:dear_diary/authPage.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/adapters.dart';
+
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(EntryAdapter());
-  var db = await Hive.openBox<Entry>('Logs');
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-
-  runApp(init());
+  runApp(const init());
 }
 
 class init extends StatelessWidget {
+  const init({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: LogPage(),
+    return const MaterialApp(
+      home: authPage(),
     );
   }
 }

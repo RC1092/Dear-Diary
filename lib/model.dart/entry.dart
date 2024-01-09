@@ -1,33 +1,17 @@
-import 'dart:io';
-
-import 'package:hive/hive.dart';
-import 'package:flutter/material.dart';
-part 'entry.g.dart';
-
-@HiveType(typeId: 1)
 class Entry {
-  @HiveField(0)
   late double rating;
-  @HiveField(1)
-  late DateTime day;
-  @HiveField(2)
-  late String description;
-  @HiveField(3)
-  late String photoPath;
 
-  Entry(this.rating, this.day, this.description, photo) {
-    if (photo != null) {
-      photoPath = photo;
-    } else {
-      photoPath = 'init';
-    }
-  }
+  late int day;
+
+  late String description;
+
+  Entry(this.rating, this.day, this.description);
 
   double getRating() {
     return rating;
   }
 
-  DateTime getDay() {
+  int getDay() {
     return day;
   }
 
@@ -35,10 +19,19 @@ class Entry {
     return description;
   }
 
-  Image getPhoto() {
-    if (photoPath == 'init') {
-      return const Image(image: AssetImage('lib/assets/default.jpg'));
-    }
-    return Image.file(File(photoPath));
+  Map<String, dynamic> toMap() {
+    return {
+      'rating': rating,
+      'day': day,
+      'desc': description,
+    };
+  }
+
+  static Entry fromMap(Map map) {
+    return Entry(
+      map['rating'],
+      map['day'],
+      map['desc'],
+    );
   }
 }
